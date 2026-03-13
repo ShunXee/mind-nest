@@ -81,7 +81,9 @@ export type HomeCopy = {
     secondaryCta: string;
   };
   testimonials: {
+    eyebrow: string;
     title: string;
+    description: string;
     contextLabel: string;
     changeLabel: string;
     cards: Array<{
@@ -95,7 +97,7 @@ export type HomeCopy = {
   };
   footer: {
     description: string;
-    columns: Array<{ title: string; items: Array<{ label: string; href: string }> }>;
+    columns: Array<{ title: string; items: Array<{ label: string; href: string; enabled: boolean }> }>;
     copyright: string;
     tagline: string;
   };
@@ -105,10 +107,9 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
   "zh-HK": {
     header: {
       nav: [
-        { href: "#benefits", label: "價值" },
-        { href: "#modules", label: "模組" },
-        { href: "#proof", label: "回饋" },
-        { href: "#contact", label: "聯絡" },
+        { href: "/courses", label: "短片課程" },
+        { href: "/chat", label: "AI 對話" },
+        { href: "/qa", label: "知識問答" },
       ],
       login: "登入",
       localeLabel: "語言",
@@ -278,7 +279,9 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       secondaryCta: "了解更多",
     },
     testimonials: {
+      eyebrow: "真實使用回饋",
       title: "試點回饋",
+      description: "來自學校、NGO 與家庭照顧者的實際使用案例，聚焦可觀察的行為變化與支持成效。",
       contextLabel: "場景",
       changeLabel: "成效",
       cards: [
@@ -330,28 +333,28 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         {
           title: "服務",
           items: [
-            { label: "心理短片", href: "#modules" },
-            { label: "AI 智能對話", href: "#modules" },
-            { label: "知識問答", href: "#modules" },
-            { label: "專家諮詢", href: "#contact" },
+            { label: "心理短片", href: "/courses", enabled: true },
+            { label: "AI 智能對話", href: "/chat", enabled: true },
+            { label: "知識問答", href: "/qa", enabled: true },
+            { label: "專家諮詢", href: "#", enabled: false },
           ],
         },
         {
           title: "資源",
           items: [
-            { label: "幫助中心", href: "#contact" },
-            { label: "育兒博客", href: "#proof" },
-            { label: "研究報告", href: "#proof" },
-            { label: "下載 App", href: "#contact" },
+            { label: "幫助中心", href: "#", enabled: false },
+            { label: "育兒博客", href: "#", enabled: false },
+            { label: "研究報告", href: "#", enabled: false },
+            { label: "下載 App", href: "#", enabled: false },
           ],
         },
         {
           title: "公司",
           items: [
-            { label: "關於我們", href: "#benefits" },
-            { label: "私隱政策", href: "#contact" },
-            { label: "使用條款", href: "#contact" },
-            { label: "聯絡我們", href: "#contact" },
+            { label: "關於我們", href: "#", enabled: false },
+            { label: "私隱政策", href: "#", enabled: false },
+            { label: "使用條款", href: "#", enabled: false },
+            { label: "聯絡我們", href: "#", enabled: false },
           ],
         },
       ],
@@ -362,10 +365,9 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
   en: {
     header: {
       nav: [
-        { href: "#benefits", label: "Value" },
-        { href: "#modules", label: "Modules" },
-        { href: "#proof", label: "Impact" },
-        { href: "#contact", label: "Contact" },
+        { href: "/courses", label: "Video Courses" },
+        { href: "/chat", label: "AI Chat" },
+        { href: "/qa", label: "Knowledge Q&A" },
       ],
       login: "Login",
       localeLabel: "Language",
@@ -542,7 +544,9 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       secondaryCta: "Learn More",
     },
     testimonials: {
+      eyebrow: "Real-World Feedback",
       title: "Pilot Feedback",
+      description: "Practical outcomes reported by schools, NGOs, and caregivers, focusing on observable behavior and support impact.",
       contextLabel: "Context",
       changeLabel: "Impact",
       cards: [
@@ -594,28 +598,28 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         {
           title: "Services",
           items: [
-            { label: "Psychology Shorts", href: "#modules" },
-            { label: "AI Dialogue", href: "#modules" },
-            { label: "Knowledge Q&A", href: "#modules" },
-            { label: "Expert Consultation", href: "#contact" },
+            { label: "Psychology Shorts", href: "/courses", enabled: true },
+            { label: "AI Dialogue", href: "/chat", enabled: true },
+            { label: "Knowledge Q&A", href: "/qa", enabled: true },
+            { label: "Expert Consultation", href: "#", enabled: false },
           ],
         },
         {
           title: "Resources",
           items: [
-            { label: "Help Center", href: "#contact" },
-            { label: "Parenting Blog", href: "#proof" },
-            { label: "Research Reports", href: "#proof" },
-            { label: "Download App", href: "#contact" },
+            { label: "Help Center", href: "#", enabled: false },
+            { label: "Parenting Blog", href: "#", enabled: false },
+            { label: "Research Reports", href: "#", enabled: false },
+            { label: "Download App", href: "#", enabled: false },
           ],
         },
         {
           title: "Company",
           items: [
-            { label: "About", href: "#benefits" },
-            { label: "Privacy", href: "#contact" },
-            { label: "Terms", href: "#contact" },
-            { label: "Contact", href: "#contact" },
+            { label: "About", href: "#", enabled: false },
+            { label: "Privacy", href: "#", enabled: false },
+            { label: "Terms", href: "#", enabled: false },
+            { label: "Contact", href: "#", enabled: false },
           ],
         },
       ],

@@ -40,20 +40,18 @@ export function SiteHeader({
           <nav className="hidden items-center gap-3 text-sm text-muted lg:flex">
             {copy.nav.map((item) => (
               <Button key={item.href} asChild variant="outline" size="sm" className="rounded-full border-line px-4">
-                <a href={item.href}>{item.label}</a>
+                <Link href={item.href}>{item.label}</Link>
               </Button>
             ))}
           </nav>
-          <Button asChild size="sm" variant="outline" className="rounded-full border-line px-4">
-            <a href="#" aria-disabled="true">
-              {copy.login}
-            </a>
+          <Button size="sm" variant="outline" className="rounded-full border-line bg-accent px-4" disabled>
+            {copy.login}
           </Button>
           <Button
             type="button"
             size="icon"
-            variant="outline"
-            className="rounded-full border-line"
+            variant="destructive"
+            className="rounded-3xl border-line bg-accent/90 text-accent-foreground"
             onClick={() => onLocaleChange(locale === "zh-HK" ? "en" : "zh-HK")}
             aria-label={locale === "zh-HK" ? "Switch to English" : "切換到香港粵語"}
             title={locale === "zh-HK" ? "Switch to English" : "切換到香港粵語"}

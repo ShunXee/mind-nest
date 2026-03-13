@@ -3,7 +3,7 @@ import Link from "next/link";
 
 type FooterCopy = {
   description: string;
-  columns: Array<{ title: string; items: Array<{ label: string; href: string }> }>;
+  columns: Array<{ title: string; items: Array<{ label: string; href: string; enabled: boolean }> }>;
   copyright: string;
   tagline: string;
 };
@@ -51,7 +51,7 @@ function FooterColumn({
   items,
 }: {
   title: string;
-  items: Array<{ label: string; href: string }>;
+  items: Array<{ label: string; href: string; enabled: boolean }>;
 }) {
   return (
     <div>
@@ -59,12 +59,18 @@ function FooterColumn({
       <ul className="grid gap-3">
         {items.map((item) => (
           <li key={item.label}>
-            <a
-              href={item.href}
-              className="cursor-pointer text-base text-muted transition-colors duration-200 hover:text-foreground"
-            >
-              {item.label}
-            </a>
+            {item.enabled ? (
+              <Link
+                href={item.href}
+                className="text-base text-muted transition-colors duration-200 hover:text-foreground"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <span aria-disabled="true" className="cursor-not-allowed text-base text-muted/55">
+                {item.label}
+              </span>
+            )}
           </li>
         ))}
       </ul>

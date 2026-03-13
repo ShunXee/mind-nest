@@ -111,7 +111,7 @@ export function HeroSection({ copy }: { copy: HomeCopy["hero"] }) {
 
 export function BenefitsSection({ copy }: { copy: HomeCopy["benefits"] }) {
   return (
-    <section id="benefits" className="py-14 my-48">
+    <section id="benefits" className="py-16">
       <div className="text-center">
         <p className="text-sm font-semibold tracking-wide text-accent-foreground">{copy.eyebrow}</p>
         <h2 className="mt-3 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
@@ -139,18 +139,49 @@ export function BenefitsSection({ copy }: { copy: HomeCopy["benefits"] }) {
   );
 }
 
-const videoPreviewGradients = [
-  "from-amber-100 via-orange-50 to-yellow-100",
-  "from-orange-100 via-amber-50 to-stone-100",
-  "from-yellow-100 via-amber-50 to-orange-100",
-  "from-stone-100 via-orange-50 to-amber-100",
-  "from-amber-100 via-yellow-50 to-orange-100",
-  "from-orange-100 via-stone-50 to-yellow-100",
-];
+function VideoCourseCard({
+  href,
+  card,
+}: {
+  href: string;
+  card: HomeCopy["videoShowcase"]["cards"][number];
+}) {
+  return (
+    <Link
+      href={href}
+      className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line bg-surface/90 shadow-[0_10px_28px_rgba(74,45,26,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_38px_rgba(74,45,26,0.14)]"
+    >
+      <div className="relative m-3 border border-amber-400/30 aspect-video rounded-[1.2rem] bg-amber-50">
+        <span className="absolute bottom-3 right-3 rounded-lg bg-black/55 px-2 py-1 text-xs font-medium text-white">
+          {card.duration}
+        </span>
+        <span className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/85 shadow-sm transition-transform duration-300 group-hover:scale-110">
+            <Play className="ml-0.5 h-6 w-6 text-accent" />
+          </span>
+        </span>
+      </div>
+
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-1">
+        <h3 className="line-clamp-2 min-h-[4rem] text-xl font-semibold text-foreground">{card.title}</h3>
+        <p className="mt-2 line-clamp-2 h-14 overflow-hidden text-base leading-7 text-muted">
+          {card.description}
+        </p>
+        <div className="mt-auto flex items-center justify-between pt-4 text-sm text-muted">
+          <span>{card.instructor}</span>
+          <span className="inline-flex items-center gap-1">
+            <Eye className="h-4 w-4" />
+            {card.views}
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export function VideoShowcaseSection({ copy }: { copy: HomeCopy["videoShowcase"] }) {
   return (
-    <section className="py-14" id="video-courses">
+    <section className="py-16" id="video-courses">
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-sm font-semibold tracking-wide text-accent-foreground">{copy.eyebrow}</p>
         <h2 className="mt-3 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
@@ -160,37 +191,9 @@ export function VideoShowcaseSection({ copy }: { copy: HomeCopy["videoShowcase"]
       </div>
 
       <ul className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {copy.cards.map((card, index) => (
+        {copy.cards.map((card) => (
           <li key={card.title}>
-            <Link
-              href="/courses/videos"
-              className="group block overflow-hidden rounded-[1.75rem] border border-line bg-surface/90 shadow-[0_10px_28px_rgba(74,45,26,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_38px_rgba(74,45,26,0.14)]"
-            >
-              <div
-                className={`relative m-3 aspect-video rounded-[1.2rem] bg-gradient-to-br ${videoPreviewGradients[index % videoPreviewGradients.length]}`}
-              >
-                <span className="absolute bottom-3 right-3 rounded-lg bg-black/55 px-2 py-1 text-xs font-medium text-white">
-                  {card.duration}
-                </span>
-                <span className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/85 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                    <Play className="ml-0.5 h-6 w-6 text-accent" />
-                  </span>
-                </span>
-              </div>
-
-              <div className="px-5 pb-5 pt-1">
-                <h3 className="line-clamp-2 text-xl font-semibold text-foreground">{card.title}</h3>
-                <p className="mt-2 line-clamp-2 text-base leading-7 text-muted">{card.description}</p>
-                <div className="mt-4 flex items-center justify-between text-sm text-muted">
-                  <span>{card.instructor}</span>
-                  <span className="inline-flex items-center gap-1">
-                    <Eye className="h-4 w-4" />
-                    {card.views}
-                  </span>
-                </div>
-              </div>
-            </Link>
+            <VideoCourseCard href="/courses/videos" card={card} />
           </li>
         ))}
       </ul>
@@ -206,7 +209,7 @@ export function VideoShowcaseSection({ copy }: { copy: HomeCopy["videoShowcase"]
 
 export function ChatShowcaseSection({ copy }: { copy: HomeCopy["chatShowcase"] }) {
   return (
-    <section className="py-14 mt-10" id="ai-chat">
+    <section className="py-16" id="ai-chat">
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-sm font-semibold tracking-wide text-accent-foreground">{copy.eyebrow}</p>
         <h2 className="mt-3 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
@@ -279,7 +282,7 @@ export function ChatShowcaseSection({ copy }: { copy: HomeCopy["chatShowcase"] }
 
 export function QAShowcaseSection({ copy }: { copy: HomeCopy["qaShowcase"] }) {
   return (
-    <section className="py-14" id="qa-bank">
+    <section className="py-16" id="qa-bank">
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-sm font-semibold tracking-wide text-accent-foreground">{copy.eyebrow}</p>
         <h2 className="mt-3 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
@@ -325,7 +328,7 @@ export function QAShowcaseSection({ copy }: { copy: HomeCopy["qaShowcase"] }) {
 
 export function FinalCtaSection({ copy }: { copy: HomeCopy["finalCta"] }) {
   return (
-    <section className="py-14">
+    <section className="py-16">
       <div className="mx-auto max-w-6xl rounded-[2.2rem]  px-6 py-12 text-center md:px-12 md:py-16">
         <h2 className="font-heading text-[clamp(2.2rem,5vw,4.6rem)] leading-[1.08] font-semibold tracking-tight text-foreground">
           {copy.titlePrefix}{" "}
@@ -394,7 +397,7 @@ export function TestimonialsSection({ copy }: { copy: HomeCopy["testimonials"] }
   );
 
   return (
-    <section className="py-10 mb-10" id="proof">
+    <section className="py-16" id="proof">
       <h2 className="font-heading text-3xl font-semibold text-foreground">{copy.title}</h2>
       <div className="mt-6 grid gap-5 md:grid-cols-2 lg:hidden">
         {copy.cards.map((card) => (

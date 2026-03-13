@@ -1,12 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ComponentType, ReactNode } from "react";
 import {
   Bot,
-  CheckCircle2,
   CirclePlay,
+  Gauge,
   LibraryBig,
+  Monitor,
   MessageSquareHeart,
+  PenLine,
+  Shield,
   Sparkles,
+  Star,
+  Users,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -20,81 +26,122 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import type { HomeCopy } from "@/lib/i18n/home-copy";
 
 const benefits = [
-  "40+ 双语微课程，单节 10-15 分钟，适配家长碎片时间。",
-  "AI 对话练习将抽象心理知识转化为可执行沟通脚本。",
-  "整合香港学校与 NGO 支持路径，降低家庭求助门槛。",
-];
-
-const testimonials = [
-  "课程短、结构清晰，家长下班后也能完成。- 学校社工",
-  "对话脚本帮我把批评式沟通改成支持式表达。- 家长用户",
-  "资源目录减少了转介耗时，家校协作效率更高。- NGO 个案主任",
+  {
+    icon: PenLine,
+    iconClassName: "bg-sky-100 text-sky-600",
+  },
+  {
+    icon: Gauge,
+    iconClassName: "bg-cyan-100 text-cyan-600",
+  },
+  {
+    icon: Users,
+    iconClassName: "bg-sky-100 text-sky-600",
+  },
+  {
+    icon: Star,
+    iconClassName: "bg-cyan-100 text-cyan-600",
+  },
+  {
+    icon: Shield,
+    iconClassName: "bg-sky-100 text-sky-600",
+  },
+  {
+    icon: Monitor,
+    iconClassName: "bg-cyan-100 text-cyan-600",
+  },
 ];
 
 const modules = [
   {
     id: "video",
     icon: CirclePlay,
-    title: "短视频微课堂",
-    description: "把家庭心理教育拆成 10-15 分钟短视频，支持家长下班后快速学习并立即实践。",
-    points: ["按场景检索：焦虑、冲突、情绪爆发", "每节课附带 1 个沟通动作清单"],
   },
   {
     id: "ai-practice",
     icon: Bot,
-    title: "AI 智能对话练习",
-    description: "模拟高压亲子沟通情境，给出更稳健的表达替代语句，帮助从“知道”走向“做到”。",
-    points: ["支持逐句反馈与语气提醒", "覆盖学业压力、沉默回避等高频情境"],
   },
   {
     id: "qa-bank",
     icon: LibraryBig,
-    title: "心理学知识问答题库",
-    description: "通过题库巩固核心概念，帮助照护者识别风险信号并理解何时需要专业转介。",
-    points: ["按年龄段与主题筛题", "错题自动归档形成复习清单"],
   },
 ];
 
-export function HeroSection() {
+export function HeroSection({ copy }: { copy: HomeCopy["hero"] }) {
   return (
-    <section className="soft-card grid gap-7 px-6 py-8 lg:px-8">
-      <Badge variant="outline" className="border-line bg-surface tracking-wide text-muted">
-        AI Assisted Family Psychoeducation
-      </Badge>
-      <h1 className="max-w-4xl font-heading text-[clamp(2.4rem,5vw,4.6rem)] leading-[1.06] font-semibold tracking-tight text-foreground">
-        让家庭心理教育具备可执行性，而不只是知识阅读。
-      </h1>
-      <p className="max-w-3xl text-lg leading-8 text-muted">
-        Mind-Nest 以双语微课程、AI 沟通练习和本地支持路径，帮助照护者更早识别风险，更稳健地支持
-        6-17 岁子女。
-      </p>
-      <div className="flex flex-wrap gap-3">
-        <Button asChild size="lg" className="min-h-11 rounded-full bg-accent hover:bg-primary-strong">
-          <Link className="focus-ring" href="#contact">
-            预约试点合作
-          </Link>
-        </Button>
-        <Button asChild size="lg" variant="outline" className="min-h-11 rounded-full border-line">
-          <a href="#modules">查看功能模块</a>
-        </Button>
+    <section className="grid gap-10 py-8 md:py-12 lg:grid-cols-12 lg:items-center lg:gap-14 lg:py-16">
+      <div className="lg:col-span-7">
+        <h1 className="mt-10 max-w-4xl font-heading text-[clamp(2.5rem,5vw,4.9rem)] leading-[1.04] font-semibold tracking-tight text-foreground">
+          {copy.title}
+        </h1>
+        <p className="mt-6 max-w-3xl text-lg leading-9 text-muted">
+          {copy.description}
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Button asChild size="lg" className="min-h-11 rounded-full bg-accent hover:bg-primary-strong">
+            <Link className="focus-ring" href="#contact">
+              {copy.pilotCta}
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="min-h-11 rounded-full border-line">
+            <a href="#" aria-disabled="true">
+              {copy.loginCta}
+            </a>
+          </Button>
+        </div>
+        <ul className="mt-8 flex flex-wrap gap-3 text-sm text-muted">
+          {copy.stats.map((stat) => (
+            <li key={stat} className="rounded-full border border-line bg-surface px-4 py-2">
+              {stat}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="relative lg:col-span-5">
+        <div className="absolute -left-8 -top-10 h-36 w-36 rounded-full bg-amber-100/70 blur-2xl" />
+        <div className="absolute -bottom-6 -right-4 h-36 w-36 rounded-full bg-orange-100/70 blur-2xl" />
+        <div className="relative rounded-[2rem] border border-line/70 bg-surface/85 p-4 shadow-[0_12px_36px_rgba(124,45,18,0.08)]">
+          <Image
+            src="/hero.jpg"
+            alt={copy.imageAlt}
+            width={1500}
+            height={1000}
+            className="h-auto w-full rounded-2xl object-cover"
+            priority
+          />
+        </div>
       </div>
     </section>
   );
 }
 
-export function BenefitsSection() {
+export function BenefitsSection({ copy }: { copy: HomeCopy["benefits"] }) {
   return (
-    <section id="benefits" className="grid gap-5 py-10 lg:grid-cols-12">
-      <h2 className="font-heading text-3xl font-semibold text-foreground lg:col-span-4">三个关键价值</h2>
-      <ul className="grid gap-4 lg:col-span-8">
-        {benefits.map((benefit) => (
-          <li key={benefit} className="soft-card flex gap-3 p-4 text-muted">
-            <span className="pt-0.5">
-              <CheckCircle2 className="h-5 w-5 text-accent" />
-            </span>
-            <span className="leading-7">{benefit}</span>
+    <section id="benefits" className="py-14 my-48">
+      <div className="text-center">
+        <p className="text-sm font-semibold tracking-wide text-accent-foreground">{copy.eyebrow}</p>
+        <h2 className="mt-3 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+          {copy.title}
+        </h2>
+      </div>
+
+      <ul className="mt-10 grid gap-6 md:grid-cols-2 xl:gap-7 xl:grid-cols-3">
+        {benefits.map((benefit, index) => (
+          <li
+            key={copy.cards[index].title}
+            className="group rounded-[2rem] border border-line bg-[#fffdf9]/90 p-8 shadow-[0_14px_36px_rgba(74,45,26,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_rgba(74,45,26,0.13)]"
+          >
+            <div
+              className={`mb-6 inline-flex h-16 w-16 items-center justify-center rounded-[1.4rem] transition-transform duration-300 group-hover:scale-105 ${benefit.iconClassName}`}
+            >
+              <benefit.icon className="h-8 w-8 transition-transform duration-300 group-hover:scale-110" />
+            </div>
+            <h3 className="text-3xl font-semibold text-foreground">{copy.cards[index].title}</h3>
+            <p className="mt-4 text-base leading-8 text-muted">{copy.cards[index].description}</p>
           </li>
         ))}
       </ul>
@@ -108,12 +155,16 @@ function ModuleCard({
   points,
   icon: Icon,
   children,
+  moduleBadge,
+  detailCta,
 }: {
   title: string;
   description: string;
   points: string[];
   icon: ComponentType<{ className?: string }>;
   children?: ReactNode;
+  moduleBadge: string;
+  detailCta: string;
 }) {
   return (
     <Card className="soft-card gap-4 border-line py-0">
@@ -121,7 +172,7 @@ function ModuleCard({
         <div className="mb-1 flex items-center gap-2">
           <Icon className="h-4 w-4 text-accent" />
           <Badge variant="secondary" className="bg-secondary text-secondary-foreground">
-            核心模块
+            {moduleBadge}
           </Badge>
         </div>
         <CardTitle className="font-heading text-2xl text-foreground">{title}</CardTitle>
@@ -141,34 +192,36 @@ function ModuleCard({
       </CardContent>
       <CardFooter>
         <Button variant="ghost" className="px-0 text-primary hover:bg-transparent hover:text-primary-strong">
-          查看模块详情
+          {detailCta}
         </Button>
       </CardFooter>
     </Card>
   );
 }
 
-export function ModulesSection() {
+export function ModulesSection({ copy }: { copy: HomeCopy["modules"] }) {
   return (
     <section id="modules" className="py-10">
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="font-heading text-3xl font-semibold text-foreground">产品功能模块</h2>
-          <p className="mt-2 text-muted">围绕“学习-练习-巩固”的家庭心理教育闭环，提升照护者行动能力。</p>
+          <h2 className="font-heading text-3xl font-semibold text-foreground">{copy.sectionTitle}</h2>
+          <p className="mt-2 text-muted">{copy.sectionDescription}</p>
         </div>
         <Badge variant="outline" className="border-line bg-surface text-muted">
-          MVP 重点能力
+          {copy.badge}
         </Badge>
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        {modules.map((module) => (
+        {modules.map((module, index) => (
           <ModuleCard
             key={module.id}
             icon={module.icon}
-            title={module.title}
-            description={module.description}
-            points={module.points}
+            title={copy.cards[index].title}
+            description={copy.cards[index].description}
+            points={copy.cards[index].points}
+            moduleBadge={copy.moduleBadge}
+            detailCta={copy.detailCta}
           >
             {module.id === "video" && (
               <div className="relative overflow-hidden rounded-lg border border-line bg-gradient-to-br from-amber-100 to-orange-100 p-4">
@@ -181,17 +234,17 @@ export function ModulesSection() {
             )}
             {module.id === "ai-practice" && (
               <div className="rounded-lg border border-line bg-surface p-3 text-sm">
-                <p className="text-muted">家长：你怎么又不说话？</p>
+                <p className="text-muted">{copy.cards[index].demo.parentLine}</p>
                 <p className="mt-2 flex items-start gap-2 text-foreground">
                   <MessageSquareHeart className="mt-0.5 h-4 w-4 text-accent" />
-                  <span>AI 建议：我注意到你今天情绪不太好，我在这儿陪你，愿意聊聊吗？</span>
+                  <span>{copy.cards[index].demo.aiLine}</span>
                 </p>
               </div>
             )}
             {module.id === "qa-bank" && (
               <div className="rounded-lg border border-line bg-surface p-3 text-sm">
-                <p className="font-medium text-foreground">示例题：孩子持续失眠 2 周，家长应先做什么？</p>
-                <p className="mt-2 text-muted">题库提供解析与转介建议，帮助建立正确判断路径。</p>
+                <p className="font-medium text-foreground">{copy.cards[index].demo.question}</p>
+                <p className="mt-2 text-muted">{copy.cards[index].demo.note}</p>
               </div>
             )}
           </ModuleCard>
@@ -201,12 +254,12 @@ export function ModulesSection() {
   );
 }
 
-export function TestimonialsSection() {
+export function TestimonialsSection({ copy }: { copy: HomeCopy["testimonials"] }) {
   return (
     <section className="py-10" id="proof">
-      <h2 className="font-heading text-3xl font-semibold text-foreground">试点反馈</h2>
+      <h2 className="font-heading text-3xl font-semibold text-foreground">{copy.title}</h2>
       <div className="mt-5 grid gap-4 lg:grid-cols-3">
-        {testimonials.map((quote) => (
+        {copy.quotes.map((quote) => (
           <blockquote key={quote} className="soft-card border-l-4 border-l-accent p-5 text-muted">
             {quote}
           </blockquote>

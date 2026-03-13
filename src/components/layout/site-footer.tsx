@@ -1,28 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const serviceLinks = [
-  { label: "心理短视频", href: "#modules" },
-  { label: "AI 智能对话", href: "#modules" },
-  { label: "知识问答", href: "#modules" },
-  { label: "专家咨询", href: "#contact" },
-];
+type FooterCopy = {
+  description: string;
+  columns: Array<{ title: string; items: Array<{ label: string; href: string }> }>;
+  copyright: string;
+  tagline: string;
+};
 
-const resourceLinks = [
-  { label: "帮助中心", href: "#contact" },
-  { label: "育儿博客", href: "#proof" },
-  { label: "研究报告", href: "#proof" },
-  { label: "下载 App", href: "#contact" },
-];
-
-const companyLinks = [
-  { label: "关于我们", href: "#benefits" },
-  { label: "隐私政策", href: "#contact" },
-  { label: "使用条款", href: "#contact" },
-  { label: "联系我们", href: "#contact" },
-];
-
-export function SiteFooter() {
+export function SiteFooter({ copy }: { copy: FooterCopy }) {
   return (
     <footer
       id="contact"
@@ -43,19 +29,17 @@ export function SiteFooter() {
               </span>
               <span className="font-heading text-base font-semibold text-foreground">Mind-Nest</span>
             </Link>
-            <p className="max-w-xs text-base leading-8 text-muted">
-              AI 家庭心理健康辅导系统，让每个家庭都能享受专业的心理健康服务。
-            </p>
+            <p className="max-w-xs text-base leading-8 text-muted">{copy.description}</p>
           </div>
 
-          <FooterColumn title="服务" items={serviceLinks} />
-          <FooterColumn title="资源" items={resourceLinks} />
-          <FooterColumn title="公司" items={companyLinks} />
+          {copy.columns.map((column) => (
+            <FooterColumn key={column.title} title={column.title} items={column.items} />
+          ))}
         </div>
 
         <div className="mt-12 border-t border-line pt-7 text-base text-muted md:flex md:items-center md:justify-between">
-          <p>Copyright 2026 Mind-Nest. All rights reserved.</p>
-          <p className="mt-3 md:mt-0">Designed with care for every family</p>
+          <p>{copy.copyright}</p>
+          <p className="mt-3 md:mt-0">{copy.tagline}</p>
         </div>
       </div>
     </footer>

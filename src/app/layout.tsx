@@ -1,18 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_TC, Varela_Round } from "next/font/google";
 import "./globals.css";
-
-const headingFont = Varela_Round({
-  variable: "--font-varela-round",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const bodyFont = Noto_Sans_TC({
-  variable: "--font-noto-sans-tc",
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Mind-Nest | 家庭心理教育平台",
@@ -27,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-HK">
-      <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
-        {children}
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

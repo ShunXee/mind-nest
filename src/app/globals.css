@@ -20,14 +20,14 @@
   --color-primary-strong: var(--primary-strong);
   --color-accent: var(--accent);
   --color-line: var(--line);
-  --font-sans: var(--font-noto-sans-tc);
-  --font-heading: var(--font-varela-round);
+  --font-sans: "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", system-ui, sans-serif;
+  --font-heading: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-noto-sans-tc), sans-serif;
+  font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", system-ui, sans-serif;
 }
 
 .focus-ring {

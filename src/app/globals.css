@@ -5,10 +5,24 @@
   --surface: #fffdf7;
   --foreground: #4a2d1a;
   --muted: #7b5b43;
-  --primary: #92400e;
+  --primary: #f7b48b;
   --primary-strong: #7c2d12;
-  --accent: #d97706;
+  --accent: #f6c58e;
   --line: #f1ddc6;
+  --card: #fffdf7;
+  --card-foreground: #4a2d1a;
+  --popover: #fffdf7;
+  --popover-foreground: #4a2d1a;
+  --primary-foreground: #fff;
+  --secondary: #f7ead9;
+  --secondary-foreground: #4a2d1a;
+  --muted-foreground: #7b5b43;
+  --accent-foreground: #4a2d1a;
+  --destructive: #dc2626;
+  --border: #f1ddc6;
+  --input: #f1ddc6;
+  --ring: #d97706;
+  --radius: 0.75rem;
 }
 
 @theme inline {
@@ -20,6 +34,23 @@
   --color-primary-strong: var(--primary-strong);
   --color-accent: var(--accent);
   --color-line: var(--line);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --font-sans: "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", system-ui, sans-serif;
   --font-heading: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
 }

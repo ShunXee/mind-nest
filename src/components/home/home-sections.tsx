@@ -1,31 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { ComponentType, ReactNode } from "react";
 import {
   Bot,
   CirclePlay,
+  Eye,
   Gauge,
   LibraryBig,
   Monitor,
-  MessageSquareHeart,
   PenLine,
+  Play,
+  SendHorizonal,
   Shield,
-  Sparkles,
   Star,
   Users,
 } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import type { HomeCopy } from "@/lib/i18n/home-copy";
 
 const benefits = [
@@ -149,121 +139,281 @@ export function BenefitsSection({ copy }: { copy: HomeCopy["benefits"] }) {
   );
 }
 
-function ModuleCard({
-  title,
-  description,
-  points,
-  icon: Icon,
-  children,
-  moduleBadge,
-  detailCta,
-}: {
-  title: string;
-  description: string;
-  points: string[];
-  icon: ComponentType<{ className?: string }>;
-  children?: ReactNode;
-  moduleBadge: string;
-  detailCta: string;
-}) {
+const videoPreviewGradients = [
+  "from-amber-100 via-orange-50 to-yellow-100",
+  "from-orange-100 via-amber-50 to-stone-100",
+  "from-yellow-100 via-amber-50 to-orange-100",
+  "from-stone-100 via-orange-50 to-amber-100",
+  "from-amber-100 via-yellow-50 to-orange-100",
+  "from-orange-100 via-stone-50 to-yellow-100",
+];
+
+export function VideoShowcaseSection({ copy }: { copy: HomeCopy["videoShowcase"] }) {
   return (
-    <Card className="soft-card gap-4 border-line py-0">
-      <CardHeader className="pt-6">
-        <div className="mb-1 flex items-center gap-2">
-          <Icon className="h-4 w-4 text-accent" />
-          <Badge variant="secondary" className="bg-secondary text-secondary-foreground">
-            {moduleBadge}
-          </Badge>
-        </div>
-        <CardTitle className="font-heading text-2xl text-foreground">{title}</CardTitle>
-        <CardDescription className="text-base leading-7 text-muted">{description}</CardDescription>
-      </CardHeader>
-      <CardContent className="grid gap-3 text-muted">
-        {children}
-        <Separator className="bg-line" />
-        <ul className="grid gap-2 text-sm leading-6">
-          {points.map((point) => (
-            <li key={point} className="flex items-start gap-2">
-              <Sparkles className="mt-1 h-3.5 w-3.5 text-accent" />
-              <span>{point}</span>
-            </li>
-          ))}
-        </ul>
-      </CardContent>
-      <CardFooter>
-        <Button variant="ghost" className="px-0 text-primary hover:bg-transparent hover:text-primary-strong">
-          {detailCta}
+    <section className="py-14" id="video-courses">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-sm font-semibold tracking-wide text-accent-foreground">{copy.eyebrow}</p>
+        <h2 className="mt-3 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+          {copy.title}
+        </h2>
+        <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-muted">{copy.description}</p>
+      </div>
+
+      <ul className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {copy.cards.map((card, index) => (
+          <li key={card.title}>
+            <Link
+              href="/courses/videos"
+              className="group block overflow-hidden rounded-[1.75rem] border border-line bg-surface/90 shadow-[0_10px_28px_rgba(74,45,26,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_38px_rgba(74,45,26,0.14)]"
+            >
+              <div
+                className={`relative m-3 aspect-video rounded-[1.2rem] bg-gradient-to-br ${videoPreviewGradients[index % videoPreviewGradients.length]}`}
+              >
+                <span className="absolute bottom-3 right-3 rounded-lg bg-black/55 px-2 py-1 text-xs font-medium text-white">
+                  {card.duration}
+                </span>
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/85 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                    <Play className="ml-0.5 h-6 w-6 text-accent" />
+                  </span>
+                </span>
+              </div>
+
+              <div className="px-5 pb-5 pt-1">
+                <h3 className="line-clamp-2 text-xl font-semibold text-foreground">{card.title}</h3>
+                <p className="mt-2 line-clamp-2 text-base leading-7 text-muted">{card.description}</p>
+                <div className="mt-4 flex items-center justify-between text-sm text-muted">
+                  <span>{card.instructor}</span>
+                  <span className="inline-flex items-center gap-1">
+                    <Eye className="h-4 w-4" />
+                    {card.views}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-10 flex justify-center">
+        <Button asChild variant="outline" className="rounded-full border-line px-6">
+          <Link href="/courses/videos">{copy.viewAllCta}</Link>
         </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </section>
   );
 }
 
-export function ModulesSection({ copy }: { copy: HomeCopy["modules"] }) {
+export function ChatShowcaseSection({ copy }: { copy: HomeCopy["chatShowcase"] }) {
   return (
-    <section id="modules" className="py-10">
-      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h2 className="font-heading text-3xl font-semibold text-foreground">{copy.sectionTitle}</h2>
-          <p className="mt-2 text-muted">{copy.sectionDescription}</p>
-        </div>
-        <Badge variant="outline" className="border-line bg-surface text-muted">
-          {copy.badge}
-        </Badge>
+    <section className="py-14 mt-10" id="ai-chat">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-sm font-semibold tracking-wide text-accent-foreground">{copy.eyebrow}</p>
+        <h2 className="mt-3 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+          {copy.title}
+        </h2>
+        <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-muted">{copy.description}</p>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-3">
-        {modules.map((module, index) => (
-          <ModuleCard
-            key={module.id}
-            icon={module.icon}
-            title={copy.cards[index].title}
-            description={copy.cards[index].description}
-            points={copy.cards[index].points}
-            moduleBadge={copy.moduleBadge}
-            detailCta={copy.detailCta}
+      <Link
+        href="/chat"
+        className="group mt-10 block max-w-6xl mx-auto rounded-[2rem] border border-line bg-surface/90 p-6 shadow-[0_12px_32px_rgba(74,45,26,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_38px_rgba(74,45,26,0.14)] md:p-8 lg:min-h-[760px] lg:p-10"
+      >
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 text-accent">
+              <Bot className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="font-semibold text-foreground">{copy.assistantName}</p>
+              <p className="text-sm text-muted">{copy.online}</p>
+            </div>
+          </div>
+          <span className="rounded-full border border-line bg-background px-3 py-1 text-sm text-muted">
+            {copy.repliedToday}
+          </span>
+        </div>
+
+        <div className="mt-6 flex h-[560px] flex-col lg:h-[620px]">
+          <div className="flex gap-3">
+            <span className="mt-1 hidden h-9 w-9 items-center justify-center rounded-full bg-amber-100 text-accent sm:inline-flex">
+              <Bot className="h-4 w-4" />
+            </span>
+            <div className="max-w-2xl rounded-2xl border border-line bg-background px-5 py-4 text-base leading-8 text-foreground">
+              {copy.opening}
+            </div>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {copy.prompts.map((prompt) => (
+              <div
+                key={prompt}
+                className="rounded-full border border-line bg-background px-4 py-2 text-sm text-muted transition-colors duration-200 hover:text-foreground"
+              >
+                {prompt}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-auto rounded-2xl border border-line bg-background px-4 py-3">
+            <div className="flex items-center gap-3">
+              <span className="flex-1 text-muted">{copy.inputPlaceholder}</span>
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white">
+                <SendHorizonal className="h-4 w-4" />
+              </span>
+            </div>
+          </div>
+
+          <p className="mt-4 text-center text-sm text-muted">{copy.disclaimer}</p>
+        </div>
+      </Link>
+
+      <div className="mt-8 flex justify-center">
+        <Button asChild variant="outline" className="rounded-full border-line px-6">
+          <Link href="/chat">{copy.openChatCta}</Link>
+        </Button>
+      </div>
+    </section>
+  );
+}
+
+export function QAShowcaseSection({ copy }: { copy: HomeCopy["qaShowcase"] }) {
+  return (
+    <section className="py-14" id="qa-bank">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-sm font-semibold tracking-wide text-accent-foreground">{copy.eyebrow}</p>
+        <h2 className="mt-3 font-heading text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+          {copy.title}
+        </h2>
+        <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-muted">{copy.description}</p>
+      </div>
+
+      <Link
+        href="/qa"
+        className="group mt-10 max-w-4xl mx-auto block rounded-[2rem] border border-line bg-surface/90 p-6 shadow-[0_12px_32px_rgba(74,45,26,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_38px_rgba(74,45,26,0.14)] md:p-8"
+      >
+        <div className="flex items-center justify-between text-base font-semibold text-muted">
+          <span>{copy.progressLabel}</span>
+          <span>{copy.scoreLabel}</span>
+        </div>
+        <div className="mt-3 h-2 overflow-hidden rounded-full bg-line">
+          <span className="block h-full w-1/4 rounded-full bg-accent" />
+        </div>
+
+        <h3 className="mt-7 text-3xl font-semibold text-foreground">{copy.question}</h3>
+
+        <div className="mt-6 grid gap-4">
+          {copy.options.map((option) => (
+            <div
+              key={option}
+              className="rounded-2xl border border-line bg-background px-5 py-4 text-lg font-medium text-foreground transition-colors duration-200 group-hover:bg-amber-50/50"
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      </Link>
+
+      <div className="mt-8 flex justify-center">
+        <Button asChild variant="outline" className="rounded-full border-line px-6">
+          <Link href="/qa">{copy.openQaCta}</Link>
+        </Button>
+      </div>
+    </section>
+  );
+}
+
+export function FinalCtaSection({ copy }: { copy: HomeCopy["finalCta"] }) {
+  return (
+    <section className="py-14">
+      <div className="mx-auto max-w-6xl rounded-[2.2rem]  px-6 py-12 text-center md:px-12 md:py-16">
+        <h2 className="font-heading text-[clamp(2.2rem,5vw,4.6rem)] leading-[1.08] font-semibold tracking-tight text-foreground">
+          {copy.titlePrefix}{" "}
+          <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            {copy.titleHighlight}
+          </span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-3xl text-[clamp(1rem,1.8vw,1.75rem)] leading-9 text-muted">
+          {copy.description}
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <Button
+            asChild
+            size="lg"
+            className="min-h-12 rounded-full px-8 text-white shadow-[0_10px_28px_rgba(124,45,18,0.22)] hover:from-primary-strong hover:to-accent"
           >
-            {module.id === "video" && (
-              <div className="relative overflow-hidden rounded-lg border border-line bg-gradient-to-br from-amber-100 to-orange-100 p-4">
-                <div className="aspect-video rounded-md border border-white/60 bg-white/70 p-3">
-                  <div className="flex h-full items-center justify-center rounded-sm border border-dashed border-accent/35">
-                    <CirclePlay className="h-9 w-9 text-accent" />
-                  </div>
-                </div>
-              </div>
-            )}
-            {module.id === "ai-practice" && (
-              <div className="rounded-lg border border-line bg-surface p-3 text-sm">
-                <p className="text-muted">{copy.cards[index].demo.parentLine}</p>
-                <p className="mt-2 flex items-start gap-2 text-foreground">
-                  <MessageSquareHeart className="mt-0.5 h-4 w-4 text-accent" />
-                  <span>{copy.cards[index].demo.aiLine}</span>
-                </p>
-              </div>
-            )}
-            {module.id === "qa-bank" && (
-              <div className="rounded-lg border border-line bg-surface p-3 text-sm">
-                <p className="font-medium text-foreground">{copy.cards[index].demo.question}</p>
-                <p className="mt-2 text-muted">{copy.cards[index].demo.note}</p>
-              </div>
-            )}
-          </ModuleCard>
-        ))}
+            <Link href="/chat">{copy.primaryCta}</Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="min-h-12 rounded-full border-line px-8">
+            <a href="#benefits">{copy.secondaryCta}</a>
+          </Button>
+        </div>
       </div>
     </section>
   );
 }
 
 export function TestimonialsSection({ copy }: { copy: HomeCopy["testimonials"] }) {
+  const firstRow = copy.cards.slice(0, 3);
+  const secondRow = copy.cards.slice(3);
+
+  const renderCard = (card: HomeCopy["testimonials"]["cards"][number]) => (
+    <article
+      className="group rounded-[1.5rem] border border-line bg-surface/92 p-5 shadow-[0_10px_26px_rgba(74,45,26,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_16px_34px_rgba(74,45,26,0.14)]"
+    >
+      <div className="flex items-center gap-3">
+        <Image
+          src={card.avatar}
+          alt={card.name}
+          width={48}
+          height={48}
+          className="h-12 w-12 rounded-full border border-line object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+        <div>
+          <p className="text-base font-semibold text-foreground">{card.name}</p>
+          <p className="text-sm text-muted">{card.role}</p>
+        </div>
+      </div>
+
+      <div className="mt-4 space-y-2">
+        <p className="text-sm leading-6 text-muted">
+          <span className="font-medium text-foreground">{copy.contextLabel}：</span>
+          {card.context}
+        </p>
+        <p className="text-sm leading-6 text-muted">
+          <span className="font-medium text-foreground">{copy.changeLabel}：</span>
+          {card.change}
+        </p>
+      </div>
+
+      <blockquote className="mt-4 border-l-2 border-accent/70 pl-3 text-base leading-7 text-foreground">
+        {card.quote}
+      </blockquote>
+    </article>
+  );
+
   return (
-    <section className="py-10" id="proof">
+    <section className="py-10 mb-10" id="proof">
       <h2 className="font-heading text-3xl font-semibold text-foreground">{copy.title}</h2>
-      <div className="mt-5 grid gap-4 lg:grid-cols-3">
-        {copy.quotes.map((quote) => (
-          <blockquote key={quote} className="soft-card border-l-4 border-l-accent p-5 text-muted">
-            {quote}
-          </blockquote>
+      <div className="mt-6 grid gap-5 md:grid-cols-2 lg:hidden">
+        {copy.cards.map((card) => (
+          <div key={card.name}>{renderCard(card)}</div>
         ))}
+      </div>
+      <div className="mt-6 hidden lg:block">
+        <div className="grid gap-5 lg:grid-cols-3">
+          {firstRow.map((card) => (
+            <div key={card.name}>{renderCard(card)}</div>
+          ))}
+        </div>
+        <div className="mt-5 flex justify-center gap-5">
+          {secondRow.map((card) => (
+            <div key={card.name} className="w-[calc((100%-2.5rem)/3)]">
+              {renderCard(card)}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

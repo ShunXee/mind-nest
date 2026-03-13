@@ -4,9 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 
 import {
   BenefitsSection,
+  ChatShowcaseSection,
+  FinalCtaSection,
   HeroSection,
-  ModulesSection,
+  QAShowcaseSection,
   TestimonialsSection,
+  VideoShowcaseSection,
 } from "@/components/home/home-sections";
 import { SiteBackground } from "@/components/layout/site-background";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -45,8 +48,12 @@ export function HomePage() {
       <main className="relative mx-auto w-[min(1080px,92vw)] py-10">
         <HeroSection copy={copy.hero} />
         <BenefitsSection copy={copy.benefits} />
-        <ModulesSection copy={copy.modules} />
         <TestimonialsSection copy={copy.testimonials} />
+        <ChatShowcaseSection copy={copy.chatShowcase} />
+        <VideoShowcaseSection copy={copy.videoShowcase} />
+        <QAShowcaseSection copy={copy.qaShowcase} />
+        <FinalCtaSection copy={copy.finalCta} />
+        
       </main>
 
       <SiteFooter copy={copy.footer} />

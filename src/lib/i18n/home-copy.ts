@@ -37,9 +37,61 @@ export type HomeCopy = {
       };
     }>;
   };
+  videoShowcase: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    viewAllCta: string;
+    cards: Array<{
+      title: string;
+      description: string;
+      duration: string;
+      instructor: string;
+      views: string;
+    }>;
+  };
+  chatShowcase: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    assistantName: string;
+    online: string;
+    repliedToday: string;
+    opening: string;
+    prompts: string[];
+    inputPlaceholder: string;
+    disclaimer: string;
+    openChatCta: string;
+  };
+  qaShowcase: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    progressLabel: string;
+    scoreLabel: string;
+    question: string;
+    options: string[];
+    openQaCta: string;
+  };
+  finalCta: {
+    titlePrefix: string;
+    titleHighlight: string;
+    description: string;
+    primaryCta: string;
+    secondaryCta: string;
+  };
   testimonials: {
     title: string;
-    quotes: string[];
+    contextLabel: string;
+    changeLabel: string;
+    cards: Array<{
+      avatar: string;
+      name: string;
+      role: string;
+      context: string;
+      change: string;
+      quote: string;
+    }>;
   };
   footer: {
     description: string;
@@ -65,12 +117,12 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       title: "將家庭心理支援，變成照顧者每日可實踐的行動。",
       description:
         "面向香港 6-17 歲兒童與青少年照顧場景，Mind-Nest 以 10-15 分鐘微課、AI 溝通演練與本地支援路徑，協助家庭更早識別風險，減少衝突升級。",
-      pilotCta: "預約試點合作",
+      pilotCta: "AI 心理支援",
       loginCta: "登入",
       stats: [
-        "10-20% 青少年出現心理困擾跡象",
-        "MVP 規劃 40+ 雙語模組",
-        "首輪試點目標：3 間學校 / NGO",
+        "面向 6-17 歲家庭照顧場景",
+        "40+ 雙語微課（10-15 分鐘 / 節）",
+        "整合學校與 NGO 在地支援路徑",
       ],
       imageAlt: "Mind-Nest 家庭心理教育場景",
     },
@@ -137,12 +189,139 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         },
       ],
     },
+    videoShowcase: {
+      eyebrow: "心理學短片課程",
+      title: "專業課程，隨時隨地學習",
+      description:
+        "由兒童與家庭心理方向專業人員設計的短片課程，每節 5-10 分鐘，幫助忙碌照顧者穩定建立支持式溝通習慣。",
+      viewAllCta: "查看全部短片課程",
+      cards: [
+        {
+          title: "如何與孩子進行有效溝通",
+          description: "掌握 5 個核心溝通技巧，減少親子衝突並提升情感連結。",
+          duration: "8:24",
+          instructor: "李明心理師",
+          views: "3,241",
+        },
+        {
+          title: "兒童情緒崩潰時父母如何應對",
+          description: "建立實戰應對框架，幫助孩子由高壓狀態逐步平復。",
+          duration: "6:50",
+          instructor: "張心雅治療師",
+          views: "5,820",
+        },
+        {
+          title: "建立安全型依附關係的 4 個方法",
+          description: "在日常互動中提升孩子安全感與自我價值感。",
+          duration: "9:12",
+          instructor: "王教授",
+          views: "4,015",
+        },
+        {
+          title: "正向行為引導：替代懲罰的做法",
+          description: "以可執行的正向引導策略，逐步建立穩定規則。",
+          duration: "7:35",
+          instructor: "劉兒童發展師",
+          views: "2,768",
+        },
+        {
+          title: "青春期孩子的溝通密碼",
+          description: "找到與青少年有效對話的方法，化解拉扯與沉默。",
+          duration: "10:03",
+          instructor: "陳教授",
+          views: "6,340",
+        },
+        {
+          title: "父母情緒管理：先照顧好自己",
+          description: "學習穩定自我壓力與情緒，成為更有承載力的照顧者。",
+          duration: "8:47",
+          instructor: "孫心諮顧問",
+          views: "7,112",
+        },
+      ],
+    },
+    chatShowcase: {
+      eyebrow: "AI 智能對話",
+      title: "你的專屬家庭心理顧問",
+      description:
+        "以家庭心理教育場景為核心，AI 可隨時陪你拆解育兒困惑，提供更可執行的支持式溝通建議。",
+      assistantName: "Nest AI",
+      online: "在線中",
+      repliedToday: "今日已回覆 247 條",
+      opening:
+        "你好，我是 Nest AI。今天想聊哪類育兒困惑？無論是親子溝通、情緒管理，還是行為引導，我都可以陪你一步步整理。",
+      prompts: ["孩子經常哭鬧怎麼辦？", "如何建立孩子自信？", "青春期孩子不願溝通"],
+      inputPlaceholder: "向 Nest AI 提問...",
+      disclaimer: "AI 回答僅供參考，如有嚴重情況請諮詢專業心理師",
+      openChatCta: "進入 AI 對話頁",
+    },
+    qaShowcase: {
+      eyebrow: "心理學知識問答",
+      title: "邊學邊測，掌握育兒心理學",
+      description: "透過簡短問答檢測並鞏固心理學知識，每日 3 分鐘，持續提升家庭支持能力。",
+      progressLabel: "問題 1 / 4",
+      scoreLabel: "得分 0",
+      question: "當孩子哭泣時，較有效的處理方式是？",
+      options: [
+        "A. 先認可孩子情緒感受，再引導解決問題",
+        "B. 立即以獎勵轉移注意力",
+        "C. 忽略哭泣，讓孩子自行控制",
+        "D. 嚴厲責備以阻止哭泣",
+      ],
+      openQaCta: "進入知識問答頁",
+    },
+    finalCta: {
+      titlePrefix: "開啟你的家庭",
+      titleHighlight: "心理健康之旅",
+      description: "加入更多家庭，一起以科學而溫和的方法，建立更穩定、更快樂的親子關係。",
+      primaryCta: "免費開始使用",
+      secondaryCta: "了解更多",
+    },
     testimonials: {
       title: "試點回饋",
-      quotes: [
-        "課程短、結構清晰，家長放工後都可以完成。- 學校社工",
-        "對話腳本幫我將批評式溝通改成支持式表達。- 家長用戶",
-        "資源目錄減少轉介耗時，家校協作效率更高。- NGO 個案主任",
+      contextLabel: "場景",
+      changeLabel: "成效",
+      cards: [
+        {
+          avatar: "/testimonials-avatars/avatar-3.png",
+          name: "李姑娘",
+          role: "小學駐校社工",
+          context: "服務 18 個有情緒行為困擾家庭",
+          change: "家長完成率由 31% 提升至 67%",
+          quote: "短片每節 10 分鐘內，家長放工後都願意跟進。最明顯是親子衝突個案中，家長更快用到降溫句式。",
+        },
+        {
+          avatar: "/testimonials-avatars/avatar-2.png",
+          name: "陳太",
+          role: "13 歲孩子家長",
+          context: "過往常以責備方式處理功課衝突",
+          change: "兩週內每晚衝突時長由 40 分鐘降至 15 分鐘",
+          quote: "AI 對話練習幫我先說感受、再談規則。孩子沒有立刻變乖，但肯開口，這是我們家最大的轉變。",
+        },
+        {
+          avatar: "/testimonials-avatars/avatar-1.png",
+          name: "黃先生",
+          role: "NGO 個案主任",
+          context: "每月需處理跨機構轉介與家長跟進",
+          change: "平均每宗個案轉介準備時間減少約 28%",
+          quote: "資源路徑和問答題庫把資訊整理得很清楚，家長來求助時已具備基礎認知，後續介入效率明顯提升。",
+        },
+        {
+          avatar: "/testimonials-avatars/avatar-4.png",
+          name: "周姑娘",
+          role: "中學輔導教師",
+          context: "負責初中年級班本情緒教育與家長溝通",
+          change: "家長回覆率由 42% 提升至 70%",
+          quote: "我們把平台短片作為家長會後延伸學習，家長不再只看一次講義，而是會按情境回看，溝通語氣明顯柔和。",
+        },
+        {
+          avatar: "/testimonials-avatars/avatar-5.png",
+          name: "鄧太",
+          role: "兩孩家長（8 歲、15 歲）",
+          context: "同時面對小學生情緒爆發與青少年冷處理",
+          change: "家庭每週高衝突次數由 5 次降至 2 次",
+          quote: "以前我會一次講很多道理，現在先處理情緒再談規則。孩子雖然未必即時同意，但整體對話不再失控。",
+        },
       ],
     },
     footer: {
@@ -195,12 +374,12 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       title: "Turn family mental health support into daily actions caregivers can apply.",
       description:
         "Built for Hong Kong families with children aged 6-17, Mind-Nest combines 10-15 minute micro-lessons, AI communication rehearsal, and local support pathways to help caregivers spot risks earlier and de-escalate conflict.",
-      pilotCta: "Book a Pilot",
+      pilotCta: "AI Mental Support",
       loginCta: "Login",
       stats: [
-        "10-20% of adolescents show signs of psychological distress",
-        "MVP roadmap includes 40+ bilingual modules",
-        "First pilot target: 3 partner schools / NGOs",
+        "Designed for families with children aged 6-17",
+        "40+ bilingual micro-lessons (10-15 mins each)",
+        "Integrated local support pathways with schools and NGOs",
       ],
       imageAlt: "Mind-Nest family psychoeducation scene",
     },
@@ -270,12 +449,143 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
         },
       ],
     },
+    videoShowcase: {
+      eyebrow: "Psychoeducation Shorts",
+      title: "Professional Lessons, Learn Anytime",
+      description:
+        "Short courses created with child and family mental health expertise. Each lesson takes 5-10 minutes and fits caregivers' real-life schedules.",
+      viewAllCta: "View all short video courses",
+      cards: [
+        {
+          title: "How to communicate effectively with your child",
+          description: "Master five practical communication moves to reduce conflict and strengthen connection.",
+          duration: "8:24",
+          instructor: "Dr. Lee",
+          views: "3,241",
+        },
+        {
+          title: "What to do during a child's emotional meltdown",
+          description: "Use a clear response framework to help your child recover from high emotional intensity.",
+          duration: "6:50",
+          instructor: "Therapist Cheung",
+          views: "5,820",
+        },
+        {
+          title: "4 ways to build secure attachment",
+          description: "Build emotional safety in daily interactions and support long-term resilience.",
+          duration: "9:12",
+          instructor: "Prof. Wong",
+          views: "4,015",
+        },
+        {
+          title: "Positive behavior guidance without punishment",
+          description: "Replace punishment with structured positive guidance that children can follow.",
+          duration: "7:35",
+          instructor: "Lau, Child Dev. Specialist",
+          views: "2,768",
+        },
+        {
+          title: "Decoding communication with teens",
+          description: "Practical approaches to reconnect with adolescents and reduce communication deadlocks.",
+          duration: "10:03",
+          instructor: "Prof. Chan",
+          views: "6,340",
+        },
+        {
+          title: "Parent emotion regulation: start with yourself",
+          description: "Build emotional steadiness as a caregiver to support your child more effectively.",
+          duration: "8:47",
+          instructor: "Sun, Counseling Consultant",
+          views: "7,112",
+        },
+      ],
+    },
+    chatShowcase: {
+      eyebrow: "AI Guided Dialogue",
+      title: "Your Dedicated Family Mental Health Advisor",
+      description:
+        "Built for caregiver scenarios, AI helps you unpack parenting challenges in real time and turn insight into actionable supportive communication.",
+      assistantName: "Nest AI",
+      online: "Online",
+      repliedToday: "247 replies today",
+      opening:
+        "Hi, I am Nest AI. What parenting challenge would you like to talk about today? I can support topics like communication, emotional regulation, and behavior guidance.",
+      prompts: [
+        "How should I respond when my child keeps crying?",
+        "How can I build my child's confidence?",
+        "My teen refuses to talk to me, what can I do?",
+      ],
+      inputPlaceholder: "Ask Nest AI...",
+      disclaimer: "AI responses are for reference only. Seek a licensed professional for severe situations.",
+      openChatCta: "Open Chat Page",
+    },
+    qaShowcase: {
+      eyebrow: "Psychology Q&A",
+      title: "Learn and Test, Build Parenting Psychology Skills",
+      description: "Use short daily questions to reinforce key concepts in just 3 minutes a day.",
+      progressLabel: "Question 1 / 4",
+      scoreLabel: "Score 0",
+      question: "When a child is crying, what is usually the most effective response?",
+      options: [
+        "A. Validate the child's feelings first, then guide problem-solving",
+        "B. Immediately distract with rewards or toys",
+        "C. Ignore the crying so the child learns self-control",
+        "D. Strictly scold to stop the crying",
+      ],
+      openQaCta: "Open Q&A Page",
+    },
+    finalCta: {
+      titlePrefix: "Start Your Family",
+      titleHighlight: "Mental Wellness Journey",
+      description: "Join more families and build calmer, healthier parent-child relationships with science-based support.",
+      primaryCta: "Start for Free",
+      secondaryCta: "Learn More",
+    },
     testimonials: {
       title: "Pilot Feedback",
-      quotes: [
-        "Short lessons and clear structure made it feasible for working parents. - School Social Worker",
-        "The scripts helped me shift from criticism to supportive communication. - Parent User",
-        "The resource directory reduced referral time and improved school-home collaboration. - NGO Case Manager",
+      contextLabel: "Context",
+      changeLabel: "Impact",
+      cards: [
+        {
+          avatar: "/testimonials-avatars/avatar-3.png",
+          name: "Ms. Lee",
+          role: "Primary School Social Worker",
+          context: "Supporting 18 families with emotional-behavior concerns",
+          change: "Parent completion rate increased from 31% to 67%",
+          quote: "The 10-minute lesson format fits parents' schedules. In conflict cases, caregivers started applying de-escalation scripts much faster.",
+        },
+        {
+          avatar: "/testimonials-avatars/avatar-2.png",
+          name: "Mrs. Chan",
+          role: "Parent of a 13-year-old",
+          context: "Previously handled homework conflict with criticism",
+          change: "Nightly conflict time dropped from 40 mins to 15 mins in 2 weeks",
+          quote: "AI rehearsal helped me acknowledge feelings before setting boundaries. My child is now willing to talk, which changed our home dynamic.",
+        },
+        {
+          avatar: "/testimonials-avatars/avatar-1.png",
+          name: "Mr. Wong",
+          role: "NGO Case Manager",
+          context: "Coordinates multi-party referrals each month",
+          change: "Average referral preparation time reduced by about 28%",
+          quote: "The resource pathway and Q&A bank improved parent readiness before intake, so our interventions became more focused and efficient.",
+        },
+        {
+          avatar: "/testimonials-avatars/avatar-4.png",
+          name: "Ms. Chow",
+          role: "Secondary School Counselor",
+          context: "Leads parent communication and emotion-learning support for junior grades",
+          change: "Parent response rate increased from 42% to 70%",
+          quote: "After workshops, parents kept using the short lessons by scenario. Their communication tone became noticeably calmer in follow-up cases.",
+        },
+        {
+          avatar: "/testimonials-avatars/avatar-5.png",
+          name: "Mrs. Tang",
+          role: "Parent of two children (8 & 15)",
+          context: "Managing emotional outbursts and teenage withdrawal at the same time",
+          change: "Weekly high-conflict episodes dropped from 5 to 2",
+          quote: "I used to lecture immediately. Now I regulate emotion first, then discuss boundaries. Conversations are no longer spiraling out of control.",
+        },
       ],
     },
     footer: {
